@@ -138,7 +138,7 @@ $(PREFIX)/bin/$(PKG_NAME)_windows-%.exe: $(GO_FILES)
 $(PREFIX)/bin/$(PKG_NAME)_%$(TARGETVARIANT)$(call extension,$(GOOS)): $(GO_FILES)
 	GOOS=$(shell echo $* | cut -f1 -d-) GOARCH=$(shell echo $* | cut -f2 -d- ) GOARM=$(GOARM) CGO_ENABLED=$(CGO_ENABLED) \
 		$(GO) build \
-			-ldflags "-w -s $(GO_LDFLAGS)" \
+			-ldflags "-w $(GO_LDFLAGS)" \
 			-o $@ \
 			./cmd/$(PKG_NAME)
 
